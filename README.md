@@ -1,6 +1,6 @@
 # Chase Ashby Portfolio
 
-A full-stack personal portfolio site for Chase Ashby that combines a .NET 8 API with a modern React/Vite frontend. The app presents engineering leadership, technical depth, project experience, and contact information in a premium dark brand style.
+A full-stack personal portfolio site for myself that combines a .NET 8 API with a modern React/Vite frontend. The app presents engineering leadership, technical depth, project experience, and contact information in a premium dark brand style.
 
 ## Overview
 
