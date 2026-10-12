@@ -107,7 +107,13 @@ describe('App portfolio rendering', () => {
     })
 
     expect(screen.getByRole('heading', { name: /Financial Systems Modernization/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /GitHub/i })).toHaveAttribute('href', 'https://github.com/Chasertx')
-    expect(screen.getByRole('link', { name: /LinkedIn/i })).toHaveAttribute('href', 'https://www.linkedin.com/in/chase-ashby-bs-cs-664a6217a/')
+
+    const githubLinks = screen.getAllByRole('link', { name: /GitHub/i })
+    const linkedinLinks = screen.getAllByRole('link', { name: /LinkedIn/i })
+
+    expect(githubLinks.length).toBeGreaterThan(0)
+    expect(linkedinLinks.length).toBeGreaterThan(0)
+    expect(githubLinks[0]).toHaveAttribute('href', 'https://github.com/Chasertx')
+    expect(linkedinLinks[0]).toHaveAttribute('href', 'https://www.linkedin.com/in/chase-ashby-bs-cs-664a6217a/')
   })
 })

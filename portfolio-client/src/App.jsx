@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 
 const currentYear = new Date().getFullYear()
+const scheduleUrl = 'https://calendly.com/chaseashby199'
 
 const fallbackProfile = {
   name: 'Chase Ashby',
@@ -125,19 +126,21 @@ function App() {
   return (
     <div className="page-shell">
       <header className="topbar">
-        <img
-          className="brand-mark"
-          src={profileImage}
-          alt={`${profileName} profile`}
-          aria-label="Chase Ashby profile"
-        />
+        <a href="https://www.linkedin.com/in/chase-ashby-bs-cs-664a6217a/" target="_blank" rel="noreferrer" aria-label="Visit Chase Ashby on LinkedIn">
+          <img
+            className="brand-mark"
+            src={profileImage}
+            alt={`${profileName} profile`}
+            aria-label="Chase Ashby profile"
+          />
+        </a>
         <nav className="main-nav" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a className="nav-button" href={`mailto:${profile.email}`}>
+        <a className="nav-button" href={scheduleUrl} target="_blank" rel="noreferrer">
           Let&apos;s talk
         </a>
       </header>
@@ -174,7 +177,14 @@ function App() {
               <div className="phase-orbit orbit-two" />
               <div className="phase-orbit orbit-three" />
               <div className="avatar-ring">
-                <img className="avatar-core" src={profileImage} alt={`${profileName} profile`} />
+                <a
+                  href="https://www.linkedin.com/in/chase-ashby-bs-cs-664a6217a/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Visit Chase Ashby on LinkedIn"
+                >
+                  <img className="avatar-core" src={profileImage} alt={`${profileName} profile`} />
+                </a>
               </div>
             </div>
             <div className="profile-meta">
