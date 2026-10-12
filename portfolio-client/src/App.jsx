@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear()
 const fallbackProfile = {
   name: 'Chase Ashby',
   title: 'Lead Software Engineer',
-  location: 'Cincinnati, OH',
+  location: 'Atlanta, GA',
   email: 'chaseashby199@gmail.com',
   headline:
     'I build scalable software, AI-enabled workflows, and resilient cloud systems that support real business outcomes.',

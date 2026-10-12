@@ -14,7 +14,7 @@ public class PortfolioController : ControllerBase
         {
             Name = "Chase Ashby",
             Title = "Lead Software Engineer",
-            Location = "Cincinnati, OH",
+            Location = "Atlanta, GA",
             Headline = "I build scalable software, AI-enabled workflows, and resilient cloud systems that support real business outcomes.",
             Summary = "I’m a software engineer with a B.S. in Computer Science, specializing in full-stack development, cloud architecture, and AI-assisted engineering across financial services, retail, and defense environments. My work combines strong backend design, modern frontend delivery, and pragmatic problem solving.",
             Email = "chaseashby199@gmail.com",

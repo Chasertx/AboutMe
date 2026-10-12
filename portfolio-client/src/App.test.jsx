@@ -5,7 +5,7 @@ import App from './App'
 const sampleProfile = {
   name: 'Chase Ashby',
   title: 'Lead Software Engineer',
-  location: 'Cincinnati, OH',
+  location: 'Atlanta, GA',
   email: 'chaseashby199@gmail.com',
   headline: 'I build scalable software, AI-enabled workflows, and resilient cloud systems that support real business outcomes.',
   summary: 'I’m a software engineer with a B.S. in Computer Science, specializing in full-stack development, cloud architecture, and AI-assisted engineering across financial services, retail, and defense environments.',

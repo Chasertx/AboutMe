@@ -18,7 +18,7 @@ public class PortfolioControllerTests
 
         Assert.Equal("Chase Ashby", profile.Name);
         Assert.Equal("Lead Software Engineer", profile.Title);
-        Assert.Equal("Cincinnati, OH", profile.Location);
+        Assert.Equal("Atlanta, GA", profile.Location);
         Assert.Equal("chaseashby199@gmail.com", profile.Email);
         Assert.Contains("AI + .NET architecture", profile.Highlights);
         Assert.Contains("C#", profile.Skills);

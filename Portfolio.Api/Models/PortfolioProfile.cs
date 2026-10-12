@@ -4,7 +4,7 @@ public class PortfolioProfile
 {
     public string Name { get; set; } = "Alex Morgan";
     public string Title { get; set; } = "Senior Full-Stack Engineer";
-    public string Location { get; set; } = "Austin, TX";
+    public string Location { get; set; } = "Atlanta, GA";
     public string Headline { get; set; } = "I design and build digital products that feel effortless for users and measurable for businesses.";
     public string Summary { get; set; } = "I help teams turn complex ideas into elegant, high-performing software experiences. My work blends product strategy, UI craftsmanship, and solid backend engineering to drive real business outcomes.";
     public string Email { get; set; } = "hello@alexmorgan.dev";
