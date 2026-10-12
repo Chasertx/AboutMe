@@ -110,7 +110,17 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    fetch('/api/portfolio')
+    const configuredApiUrl = import.meta.env.VITE_PORTFOLIO_API_URL?.trim()
+    const isGithubPages = window.location.hostname.endsWith('github.io')
+    const endpoint = configuredApiUrl || (isGithubPages ? null : '/api/portfolio')
+
+    if (!endpoint) {
+      setProfile(fallbackProfile)
+      setLoading(false)
+      return
+    }
+
+    fetch(endpoint)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to load portfolio data')
@@ -131,7 +141,7 @@ function App() {
   }
 
   const profileName = profile.name || fallbackProfile.name
-  const profileImage = '/chase-portrait.jpg'
+  const profileImage = `${import.meta.env.BASE_URL}chase-portrait.jpg`
 
   return (
     <div className={`page-shell ${theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
