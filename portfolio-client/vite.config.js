@@ -2,8 +2,9 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // Project site is hosted at /AboutMe/ on GitHub Pages.
-  base: '/AboutMe/',
+  // Use relative asset paths so one build can run from GitHub Pages project paths,
+  // custom domains, and other static hosts without path-specific rebuilds.
+  base: './',
   plugins: [react()],
   server: {
     port: 5173,

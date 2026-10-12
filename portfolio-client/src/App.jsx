@@ -178,6 +178,8 @@ function App() {
 
       <main>
         <section className="hero-section">
+          <p className="mobile-hero-name">{profileName}</p>
+
           <div className="hero-copy">
             <p className="eyebrow">Available for select opportunities</p>
             <h1>{profileName}</h1>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <script>
+      // Keep GitHub Pages deep-link refreshes from getting stuck on 404.
+      // Redirect unknown paths back to the app entry route.
+      const { hostname, pathname, search, hash } = window.location
+      const pathSegments = pathname.split('/').filter(Boolean)
+      const isGithubPagesProject = hostname.endsWith('github.io') && pathSegments.length > 0
+      const projectRoot = isGithubPagesProject ? `/${pathSegments[0]}/` : '/'
+
+      if (pathname !== projectRoot) {
+        window.location.replace(`${projectRoot}${search}${hash}`)
+      } else {
+        window.location.replace(projectRoot)
+      }
+    </script>
+  </body>
+</html>

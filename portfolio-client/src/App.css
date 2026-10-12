@@ -180,6 +180,10 @@ body.theme-light #root {
   padding: 64px 0 24px;
 }
 
+.mobile-hero-name {
+  display: none;
+}
+
 .hero-copy h1 {
   margin: 0;
   font-size: clamp(3rem, 6vw, 5.3rem);
@@ -677,6 +681,16 @@ body.theme-light #root {
 
   .hero-section {
     grid-template-columns: 1fr;
+  }
+
+  .mobile-hero-name {
+    display: block;
+    margin: 0 0 14px;
+    font-size: clamp(2rem, 8vw, 2.7rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--heading);
+    font-weight: 700;
   }
 
   .hero-copy {
