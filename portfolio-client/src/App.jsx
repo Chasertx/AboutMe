@@ -141,7 +141,7 @@ function App() {
           <a href="#contact">Contact</a>
         </nav>
         <a className="nav-button" href={scheduleUrl} target="_blank" rel="noreferrer">
-          Let&apos;s talk
+          Schedule
         </a>
       </header>
 
