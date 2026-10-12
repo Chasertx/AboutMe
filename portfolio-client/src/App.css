@@ -246,7 +246,7 @@
 }
 
 .profile-panel {
-  background: linear-gradient(180deg, var(--surface-strong), rgba(14, 22, 33, 0.8));
+  background: linear-gradient(180deg, var(--surface-strong), var(--page-bg));
   border: 1px solid var(--muted-border);
   border-radius: 28px;
   padding: 24px;
@@ -432,6 +432,7 @@
   border-radius: 50%;
   background: linear-gradient(135deg, #7c3aed, #22d3ee);
   margin-top: 8px;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
 }
 
 .timeline-content {
@@ -480,7 +481,7 @@
 }
 
 .project-card {
-  background: linear-gradient(180deg, var(--panel), rgba(15, 23, 42, 0.65));
+  background: linear-gradient(180deg, var(--panel), var(--page-bg));
   border: 1px solid var(--muted-border);
   border-radius: 22px;
   padding: 22px;
@@ -552,7 +553,7 @@
   margin-top: 56px;
   padding: 28px 30px;
   background: linear-gradient(135deg, rgba(184, 213, 255, 0.08), rgba(242, 196, 141, 0.06));
-  border: 1px solid rgba(184, 201, 224, 0.16);
+  border: 1px solid var(--muted-border);
   border-radius: 24px;
 }
 
@@ -588,6 +589,17 @@
   padding-top: 34px;
   text-align: center;
   color: var(--muted);
+}
+
+.theme-light .project-card,
+.theme-light .timeline-content,
+.theme-light .profile-panel,
+.theme-light .contact-section,
+.theme-light .topbar,
+.theme-light .skill-pill,
+.theme-light .social-link,
+.theme-light .highlight-list li {
+  border-color: rgba(15, 23, 42, 0.08);
 }
 
 @media (max-width: 900px) {
