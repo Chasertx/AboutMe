@@ -4,7 +4,7 @@ This project hosts the structured content that powers the portfolio website. It 
 
 ## Purpose
 
-The API acts as the source of truth for portfolio content so the UI can remain clean, reusable, and easy to maintain. Instead of hardcoding content in the frontend, the app fetches the portfolio data from the API as JSON.
+The API is the source of truth for portfolio content so the UI remains clean, reusable, and easy to maintain. Instead of hardcoding profile information in the frontend, the app fetches the portfolio data from the API as JSON.
 
 ## Stack
 
@@ -57,10 +57,14 @@ curl http://localhost:5158/api/portfolio
 From the repo root:
 
 ```bash
-dotnet test Portfolio.sln
+dotnet test Portfolio.sln --configuration Release
 ```
 
-This executes the xUnit tests covering the portfolio API contract.
+This executes the xUnit tests covering the portfolio API contract and required profile metadata.
+
+## CI and deployment behavior
+
+The application is validated in GitHub Actions before deployment. The workflow checks both the frontend and backend, then publishes the ASP.NET app and uploads the React build output to Azure App Service.
 
 ## Important files
 

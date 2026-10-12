@@ -1,19 +1,19 @@
 # Chase Ashby Portfolio
 
-A full-stack personal portfolio site for myself that combines a .NET 8 API with a modern React/Vite frontend. The app presents engineering leadership, technical depth, project experience, and contact information in a premium dark brand style.
+A full-stack personal portfolio and engineering profile built with a .NET 8 web API and a modern React/Vite frontend. The project is designed to be easy to maintain, fully testable, and ready for automated Azure deployment from GitHub.
 
 ## Overview
 
-This repository is designed to function as both a personal portfolio and a maintainable full-stack application. It separates presentation from content so the portfolio can evolve without rewriting the UI or layout structure.
+This repository combines a polished frontend experience with a content-driven API so the site can be updated without reworking the UI. It is structured for both local development and production deployment, with automated checks that validate the app before publishing.
 
-### What the app includes
+### Included features
 
-- responsive portfolio landing page
-- hero, about, experience, project, and contact sections
-- dynamic portfolio content served from a backend API
-- polished dark visual design with custom animation and branding
-- structured data model for updating profile information quickly
-- CI workflow for automated validation in GitHub Actions
+- responsive personal portfolio landing page
+- hero, about, experience, projects, and contact sections
+- API-backed profile content
+- dark premium visual design
+- frontend and backend automated tests
+- GitHub Actions deployment pipeline to Azure App Service
 
 ## Architecture
 
@@ -21,20 +21,21 @@ This repository is designed to function as both a personal portfolio and a maint
 portfolio/
 ├── .github/
 │   └── workflows/
-│       └── portfolio-ci.yml
+│       ├── portfolio-ci.yml
+│       └── azure-deploy.yml
 ├── Portfolio.Api/
 │   ├── Controllers/
 │   ├── Models/
 │   ├── Program.cs
+│   ├── README.md
 │   ├── Portfolio.Api.csproj
-│   └── README.md
+│   └── wwwroot/
 ├── portfolio-client/
-│   ├── public/
 │   ├── src/
+│   ├── README.md
 │   ├── package.json
 │   ├── vite.config.js
 │   ├── vitest.config.js
-│   ├── README.md
 │   └── Portfolio.Api.Tests/
 ├── Portfolio.sln
 ├── README.md
@@ -45,40 +46,31 @@ portfolio/
 
 - React 19
 - Vite
-- CSS-driven UI styling
-- Vitest + Testing Library for regression tests
+- JavaScript / JSX
+- Testing Library + Vitest
 
 ### Backend
 
 - .NET 8
 - ASP.NET Core Web API
-- strongly typed model layer for portfolio content
+- strongly typed portfolio content model
 
-## Prerequisites
+## Local development
 
-Before running the project locally, install:
+### Prerequisites
 
 - .NET 8 SDK
 - Node.js 20+
 - npm
 - Git
 
-## Local Setup
-
-### 1. Clone the repository
-
-```bash
-git clone <your-repository-url>
-cd portfolio
-```
-
-### 2. Restore .NET dependencies
+### 1. Restore dependencies
 
 ```bash
 dotnet restore Portfolio.sln
 ```
 
-### 3. Run the API
+### 2. Run the API
 
 ```bash
 dotnet run --project Portfolio.Api
@@ -90,7 +82,7 @@ The API is available at:
 http://localhost:5158/api/portfolio
 ```
 
-### 4. Run the frontend
+### 3. Run the frontend
 
 ```bash
 cd portfolio-client
@@ -108,24 +100,16 @@ http://localhost:5173
 
 ### Frontend tests
 
-From the frontend directory:
-
 ```bash
 cd portfolio-client
-npm test
+npm test -- --run
 ```
-
-This runs the Vitest suite covering the main UI rendering and fallback logic.
 
 ### Backend tests
 
-From the repository root:
-
 ```bash
-dotnet test Portfolio.sln
+dotnet test Portfolio.sln --configuration Release
 ```
-
-This runs the .NET xUnit suite for the API contract and content validation.
 
 ### Full local validation
 
@@ -134,51 +118,64 @@ cd portfolio-client
 npm run build
 ```
 
-And for the API:
-
 ```bash
 dotnet build Portfolio.sln
 ```
 
-## Continuous Integration
+## CI and deployment pipeline
 
-The project includes a GitHub Actions workflow at:
+The repository includes two GitHub Actions workflows:
 
-```text
-.github/workflows/portfolio-ci.yml
-```
+- `.github/workflows/portfolio-ci.yml` — validates pull requests and main-branch pushes
+- `.github/workflows/azure-deploy.yml` — runs validation, builds the production bundle, and deploys to Azure App Service
 
-It runs on pushes and pull requests and validates:
+### Deployment flow
 
-- frontend dependency install
-- frontend unit/regression tests
-- frontend production build
-- .NET restore and test execution
+When a commit is pushed to `main`, the deployment workflow does the following:
 
-## How to update portfolio content
+1. installs frontend dependencies
+2. runs frontend regression tests
+3. builds the production React app
+4. prepares the static assets for ASP.NET hosting
+5. restores .NET dependencies
+6. runs .NET tests
+7. publishes the API bundle
+8. deploys the published app to Azure App Service
 
-Most content is stored in the backend and rendered by the frontend:
+## Azure setup
 
-- profile and experience data: `Portfolio.Api/Controllers/PortfolioController.cs`
-- model definitions: `Portfolio.Api/Models/PortfolioProfile.cs`
-- UI structure: `portfolio-client/src/App.jsx`
-- visual styling: `portfolio-client/src/App.css`
+Before the first deployment, configure these GitHub repository secrets:
 
-Typical content updates include:
+- `AZURE_WEBAPP_NAME` — the Azure App Service name
+- `AZURE_WEBAPP_PUBLISH_PROFILE` — the publish profile XML downloaded from Azure
 
-- changing your headline, summary, or title
-- adding experience entries or projects
-- updating email, LinkedIn, or GitHub links
-- refining the visual language or layout
+The workflow expects an App Service deployment target already created in Azure and the app configured for public access.
 
-## Deployment Notes
+## Updating portfolio content
 
-This project is ready for a simple deployment flow:
+Core content and structure are defined in these files:
 
-1. push to GitHub
-2. let GitHub Actions run the validation checks
-3. deploy the API and frontend to your target hosting environment
-4. verify the live profile loads from the API
+- `Portfolio.Api/Controllers/PortfolioController.cs` — profile payload and content source
+- `Portfolio.Api/Models/PortfolioProfile.cs` — typed data model for the app
+- `portfolio-client/src/App.jsx` — UI rendering and fetch logic
+- `portfolio-client/src/App.css` — styling and layout
+
+Common updates include:
+
+- changing headline, summary, skill list, or location
+- updating experience entries or project cards
+- refreshing links to GitHub, LinkedIn, or email
+- refining the visual style to match your personal brand
+
+## Production deployment notes
+
+This project is ready for a straightforward GitHub-to-Azure deployment workflow:
+
+1. commit and push to `main`
+2. GitHub Actions validates the code
+3. the app is built and published
+4. Azure App Service receives the updated deployment
+5. the site reflects the latest content without a manual publish step
 
 ## Contact
 
@@ -188,4 +185,4 @@ This project is ready for a simple deployment flow:
 
 ## Notes
 
-This project is intentionally structured to be easy to maintain while maintaining a polished, personalized experience. It is well-suited for ongoing portfolio improvement, employer outreach, and future expansion with additional projects, downloadable resume content, or CMS-backed profile updates.
+This project is designed to support ongoing portfolio refinement, career updates, and future expansion while maintaining a clean engineering workflow with automated validation and deployment.

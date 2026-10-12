@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 
 const sampleProfile = {
@@ -46,6 +46,31 @@ describe('App portfolio rendering', () => {
 
   afterEach(() => {
     vi.restoreAllMocks()
+  })
+
+  it('shows the loading state while the portfolio request is in flight', async () => {
+    let resolveFetch
+    global.fetch = vi.fn().mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          resolveFetch = resolve
+        }),
+    )
+
+    render(<App />)
+
+    expect(screen.getByText(/Loading portfolio/i)).toBeInTheDocument()
+
+    await act(async () => {
+      resolveFetch({
+        ok: true,
+        json: async () => sampleProfile,
+      })
+    })
+
+    await waitFor(() => {
+      expect(screen.getByRole('heading', { name: /Chase Ashby/i })).toBeInTheDocument()
+    })
   })
 
   it('renders the portfolio profile from the API response', async () => {

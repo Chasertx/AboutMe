@@ -24,6 +24,7 @@ public class PortfolioControllerTests
         Assert.Contains("C#", profile.Skills);
         Assert.Equal(3, profile.Projects.Count);
         Assert.Equal(6, profile.Experience.Count);
+        Assert.Equal(3, profile.SocialLinks.Count);
     }
 
     [Fact]
@@ -38,7 +39,9 @@ public class PortfolioControllerTests
 
         Assert.Equal("Financial Systems Modernization", profile.Projects[0].Name);
         Assert.Contains("Finance", profile.Projects.Select(p => p.Category));
+        Assert.All(profile.Projects, project => Assert.False(string.IsNullOrWhiteSpace(project.Name)));
         Assert.Contains(profile.SocialLinks, link => link.Label == "LinkedIn" && link.Url.Contains("linkedin.com"));
         Assert.Contains(profile.SocialLinks, link => link.Label == "Email" && link.Url.Contains("mailto:"));
+        Assert.Contains(profile.SocialLinks, link => link.Label == "GitHub" && link.Url.Contains("github.com"));
     }
 }
