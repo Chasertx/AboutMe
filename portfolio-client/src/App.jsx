@@ -14,7 +14,7 @@ const fallbackProfile = {
   summary:
     'I’m a software engineer with a B.S. in Computer Science, specializing in full-stack development, cloud architecture, and AI-assisted engineering across financial services, retail, and defense environments. My work combines strong backend design, modern frontend delivery, and pragmatic problem solving.',
   highlights: ['Lead Software Engineer at Fiserv', 'AI + .NET architecture', 'Cloud, payments, and data systems'],
-  skills: ['C#', '.NET Core 8/10', 'ASP.NET Core', 'React', 'Blazor', 'TypeScript', 'JavaScript', 'RxJS', 'SQL Server', 'PostgreSQL', 'MongoDB', 'Cosmos DB', 'Azure', 'Docker', 'Git', 'Azure DevOps', 'CI/CD', 'Entity Framework Core', 'TensorFlow', 'PyTorch', 'GitHub Copilot', 'AI Engineering'],
+  skills: ['C#', '.NET Core 8/10', 'AI Engineering', 'GitHub Copilot', 'AI-assisted development', 'ASP.NET Core', 'React', 'Blazor', 'TypeScript', 'JavaScript', 'RxJS', 'SQL Server', 'Entity Framework Core', 'PostgreSQL', 'MongoDB', 'Cosmos DB', 'Azure', 'Docker', 'Git', 'Azure DevOps', 'CI/CD', 'TensorFlow', 'PyTorch'],
   projects: [
     {
       name: 'Financial Systems Modernization',
@@ -98,6 +98,14 @@ const fallbackProfile = {
 function App() {
   const [profile, setProfile] = useState(fallbackProfile)
   const [loading, setLoading] = useState(true)
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = window.localStorage.getItem('portfolio-theme')
+    return savedTheme || 'dark'
+  })
+
+  useEffect(() => {
+    window.localStorage.setItem('portfolio-theme', theme)
+  }, [theme])
 
   useEffect(() => {
     fetch('/api/portfolio')
@@ -124,7 +132,7 @@ function App() {
   const profileImage = '/chase-portrait.jpg'
 
   return (
-    <div className="page-shell">
+    <div className={`page-shell ${theme === 'dark' ? 'theme-dark' : 'theme-light'}`}>
       <header className="topbar">
         <a href="https://www.linkedin.com/in/chase-ashby-bs-cs-664a6217a/" target="_blank" rel="noreferrer" aria-label="Visit Chase Ashby on LinkedIn">
           <img
@@ -140,9 +148,20 @@ function App() {
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
         </nav>
-        <a className="nav-button" href={scheduleUrl} target="_blank" rel="noreferrer">
-          Schedule
-        </a>
+        <div className="header-actions">
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            {theme === 'dark' ? '☀' : '☾'}
+          </button>
+          <a className="nav-button" href={scheduleUrl} target="_blank" rel="noreferrer">
+            Schedule
+          </a>
+        </div>
       </header>
 
       <main>
