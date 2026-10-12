@@ -105,6 +105,8 @@ function App() {
 
   useEffect(() => {
     window.localStorage.setItem('portfolio-theme', theme)
+    document.body.classList.toggle('theme-light', theme === 'light')
+    document.body.classList.toggle('theme-dark', theme === 'dark')
   }, [theme])
 
   useEffect(() => {

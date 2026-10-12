@@ -12,10 +12,10 @@
   --accent: #93c5fd;
   --pill-bg: rgba(15, 23, 34, 0.72);
   --shadow: rgba(2, 6, 23, 0.22);
-  width: min(1200px, calc(100% - 32px));
+  width: min(1200px, calc(100% - 20px));
   margin: 0 auto;
-  padding: 24px 0 48px;
-  background: var(--page-bg);
+  padding: 20px 6px 48px;
+  background: transparent;
   color: var(--text);
   transition: background 0.25s ease, color 0.25s ease;
 }
@@ -36,9 +36,14 @@
   --shadow: rgba(15, 23, 42, 0.08);
 }
 
-.body,
+body,
 #root {
-  background: var(--page-bg);
+  background: #07111d;
+}
+
+body.theme-light,
+body.theme-light #root {
+  background: #edf4ff;
 }
 
 .loading-state {
